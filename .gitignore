@@ -1,3 +1,7 @@
+.claude/
+.vscode/
+.DS_Store
+
 *.gem
 *.rbc
 /.config
