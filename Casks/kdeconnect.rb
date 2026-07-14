@@ -15,7 +15,7 @@ cask "kdeconnect" do
     regex(/kdeconnect-kde-master[._-](\d+)-macos-clang-#{arch}\.dmg/i)
   end
 
-  depends_on macos: ">= :ventura"
+  depends_on macos: :ventura
 
   app "KDE Connect.app"
 
