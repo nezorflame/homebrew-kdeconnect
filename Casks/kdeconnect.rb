@@ -1,13 +1,18 @@
 cask "kdeconnect" do
   arch arm: "arm64", intel: "x86_64"
 
+  version_arm = "6677"
+  sha256_arm = "e894331325dc9ffb13f28ef13c5b8ca8d7399f96de1414b9460cb6c28f98d47b"
+  version_intel = "6589"
+  sha256_intel = "7a9319a9e1426321b7cc4fe155467a34e698a9766f62fb8c5d1a1387e55bdb19"
+
   on_arm do
-    version "6677"
-    sha256 "e894331325dc9ffb13f28ef13c5b8ca8d7399f96de1414b9460cb6c28f98d47b"
+    version version_arm
+    sha256 sha256_arm
   end
   on_intel do
-    version "6589"
-    sha256 "7a9319a9e1426321b7cc4fe155467a34e698a9766f62fb8c5d1a1387e55bdb19"
+    version version_intel
+    sha256 sha256_intel
   end
 
   url "https://origin.cdn.kde.org/ci-builds/network/kdeconnect-kde/master/macos-#{arch}/kdeconnect-kde-master-#{version}-macos-clang-#{arch}.dmg"

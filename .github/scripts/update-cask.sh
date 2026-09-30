@@ -20,12 +20,12 @@ updated=false
 summary=()
 
 # KDE's CDN keeps only the newest DMG per arch, and the arches publish independently,
-# so each one is tracked on its own on_arm/on_intel block in the cask.
-for pair in arm64:on_arm x86_64:on_intel; do
+# so each one is tracked via its own version_<arch>/sha256_<arch> variable in the cask.
+for pair in arm64:arm x86_64:intel; do
   arch="${pair%%:*}"
-  block="${pair##*:}"
+  var="${pair##*:}"
 
-  current=$(sed -n "/$block do/,/end/ s/.*version \"\([0-9]*\)\".*/\1/p" "$CASK")
+  current=$(sed -n "s/^  version_$var = \"\([0-9]*\)\".*/\1/p" "$CASK")
   latest=$(latest_version "$arch")
   echo "$arch: current=$current latest=$latest"
 
@@ -40,8 +40,8 @@ for pair in arm64:on_arm x86_64:on_intel; do
   curl -fsSL -o "$tmpdir/$arch.dmg" "$BASE/macos-$arch/kdeconnect-kde-master-$latest-macos-clang-$arch.dmg"
   sha=$(sha256sum "$tmpdir/$arch.dmg" | awk '{print $1}')
 
-  sed -E -i.bak "/$block do/,/end/ s/(version \")[0-9]+(\")/\\1$latest\\2/" "$CASK"
-  sed -E -i.bak "/$block do/,/end/ s/(sha256 \")[0-9a-f]{64}(\")/\\1$sha\\2/" "$CASK"
+  sed -E -i.bak "s/^(  version_$var = \")[0-9]+(\")/\\1$latest\\2/" "$CASK"
+  sed -E -i.bak "s/^(  sha256_$var = \")[0-9a-f]{64}(\")/\\1$sha\\2/" "$CASK"
   rm -f "$CASK.bak"
 
   updated=true
