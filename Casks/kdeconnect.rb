@@ -1,8 +1,8 @@
 cask "kdeconnect" do
   arch arm: "arm64", intel: "x86_64"
 
-  version_arm = "6706"
-  sha256_arm = "571752f2e6b26f5b4056395cdcad1dc82e338529bb48eb1be55b247248200f5f"
+  version_arm = "6717"
+  sha256_arm = "3b8592ea4578437299ac09647a10c0689c7d022ea81da9373d0f512741246d01"
   version_intel = "6589"
   sha256_intel = "7a9319a9e1426321b7cc4fe155467a34e698a9766f62fb8c5d1a1387e55bdb19"
 
