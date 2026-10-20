@@ -2,7 +2,7 @@ name: Update kdeconnect cask
 
 on:
   schedule:
-    - cron: '37 3 * * *'
+    - cron: '37 * * * *'
   workflow_dispatch:
 
 permissions:
